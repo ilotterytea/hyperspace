@@ -56,6 +56,14 @@ public class Star extends Sprite {
 
     @Override
     public void draw(Batch batch) {
+        float screenCenterX = Gdx.graphics.getWidth() / 2f;
+        float screenCenterY = Gdx.graphics.getHeight() / 2f;
+        float spriteX = this.position3d.x / this.position3d.z + screenCenterX;
+        float spriteY = this.position3d.y / this.position3d.z + screenCenterY;
+
+        super.setPosition(spriteX, spriteY);
+        super.setScale(1f);
+
         super.draw(batch);
     }
 }

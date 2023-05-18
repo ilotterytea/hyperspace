@@ -47,7 +47,11 @@ public class Star extends Sprite {
      * Update position.
      */
     public void update() {
+        this.position3d.z -= this.velocity;
 
+        if (this.position3d.z < 1) {
+            this.position3d = get3dPosition();
+        }
     }
 
     @Override

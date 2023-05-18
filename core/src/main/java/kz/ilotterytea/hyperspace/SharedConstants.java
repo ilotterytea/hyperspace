@@ -13,4 +13,6 @@ public class SharedConstants {
 
     public static final Color[] STARS_COLORS = new Color[]{Color.CYAN, Color.SKY, Color.ROYAL, Color.BLUE};
     public static final float STARS_MAX_VELOCITY = 0.25f;
+
+    public static final float SPACE_SIZE = 35f;
 }

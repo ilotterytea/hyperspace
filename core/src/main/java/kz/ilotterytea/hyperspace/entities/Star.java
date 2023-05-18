@@ -35,7 +35,7 @@ public class Star extends Sprite {
 
     private Vector3 get3dPosition() {
         float angle = (float) (Math.random() * (2 * Math.PI));
-        float radius = (float) (Math.random() * Gdx.graphics.getHeight());
+        float radius = ((Gdx.graphics.getHeight() / SharedConstants.SPACE_SIZE) + (float) (Math.random() * Gdx.graphics.getHeight())) * SharedConstants.SPACE_SIZE;
 
         float x = (float) (radius * Math.sin(angle));
         float y = (float) (radius * Math.cos(angle));

@@ -5,6 +5,8 @@ import kz.ilotterytea.hyperspace.SharedConstants;
 import kz.ilotterytea.hyperspace.entities.Star;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -37,6 +39,9 @@ public class Starfield {
         for (Star star : this.stars) {
             star.update();
         }
+
+        this.stars.sort(Comparator.comparingInt(c -> (int) c.getPosition3d().z));
+        Collections.reverse(this.stars);
 
         for (Star star : this.stars) {
             star.draw(batch);

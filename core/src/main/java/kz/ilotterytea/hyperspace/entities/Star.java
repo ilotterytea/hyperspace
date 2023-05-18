@@ -62,7 +62,8 @@ public class Star extends Sprite {
         float spriteY = this.position3d.y / this.position3d.z + screenCenterY;
 
         super.setPosition(spriteX, spriteY);
-        super.setScale(1f);
+        float size = SharedConstants.STARS_POS_Z_INIT_DISTANCE / this.position3d.z;
+        super.setSize(size, size);
 
         super.draw(batch);
     }

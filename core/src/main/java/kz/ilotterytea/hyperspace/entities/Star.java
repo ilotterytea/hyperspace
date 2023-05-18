@@ -1,6 +1,7 @@
 package kz.ilotterytea.hyperspace.entities;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector3;
@@ -12,13 +13,24 @@ import kz.ilotterytea.hyperspace.SharedConstants;
  * @version 1.0
  */
 public class Star extends Sprite {
+    private Vector3 position3d;
+    private final float velocity;
 
     /**
      * Star entity.
      * @author ilotterytea
      */
     public Star() {
-        super();
+        super(new Texture(Gdx.files.internal("sprites/star.png")));
+
+        // Setting 3D position:
+        this.position3d = get3dPosition();
+
+        // Setting velocity:
+        this.velocity = (float) (Math.random() * SharedConstants.STARS_MAX_VELOCITY);
+
+        // Setting random color:
+        super.setColor(SharedConstants.STARS_COLORS[(int) Math.round(Math.random() * (SharedConstants.STARS_COLORS.length - 1))]);
     }
 
     private Vector3 get3dPosition() {

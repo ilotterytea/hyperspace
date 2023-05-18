@@ -2,6 +2,7 @@ package kz.ilotterytea.hyperspace;
 
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import kz.ilotterytea.hyperspace.screens.GameScreen;
 
 /** {@link com.badlogic.gdx.ApplicationListener} implementation shared by all platforms. */
 public class HyperspaceGame extends Game {
@@ -23,6 +24,6 @@ public class HyperspaceGame extends Game {
     @Override
     public void create() {
         batch = new SpriteBatch();
-        setScreen(new FirstScreen());
+        setScreen(new GameScreen());
     }
 }

@@ -1,6 +1,6 @@
 package kz.ilotterytea.hyperspace.world;
 
-import kz.ilotterytea.hyperspace.HyperspaceGame;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import kz.ilotterytea.hyperspace.SharedConstants;
 import kz.ilotterytea.hyperspace.entities.Star;
 
@@ -33,13 +33,13 @@ public class Starfield {
     /**
      * Update and render stars.
      */
-    public void render() {
+    public void render(SpriteBatch batch) {
         for (Star star : this.stars) {
             star.update();
         }
 
         for (Star star : this.stars) {
-            star.draw(HyperspaceGame.getInstance().getBatch());
+            star.draw(batch);
         }
     }
 

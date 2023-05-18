@@ -66,4 +66,12 @@ public class Star extends Sprite {
 
         super.draw(batch);
     }
+
+    public Vector3 getPosition3d() {
+        return position3d;
+    }
+
+    public float getVelocity() {
+        return velocity;
+    }
 }

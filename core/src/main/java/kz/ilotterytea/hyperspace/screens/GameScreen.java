@@ -30,7 +30,7 @@ public class GameScreen implements Screen {
 
         GAME.getBatch().setProjectionMatrix(camera.combined);
         GAME.getBatch().begin();
-        field.render();
+        field.render(GAME.getBatch());
         GAME.getBatch().end();
     }
 

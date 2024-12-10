@@ -7,11 +7,13 @@
 #include "raylib.h"
 
 Vector3 Generate3DPosition() {
-  double random = (double)rand() / RAND_MAX;
+  double angle_random = (double)rand() / (double)RAND_MAX;
+  double radius_random = (double)rand() / (double)RAND_MAX;
 
-  double angle = random * 2.0 * M_PI;
-  double radius =
-      (GetScreenHeight() / SPACE_SIZE) + (random * GetScreenHeight());
+  double angle = angle_random * 2.0 * M_PI;
+
+  double radius = (GetScreenHeight() / SPACE_SIZE) +
+                  (radius_random * GetScreenHeight()) * SPACE_SIZE;
 
   float x = radius * sin(angle);
   float y = radius * cos(angle);

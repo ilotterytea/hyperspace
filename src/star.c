@@ -23,7 +23,12 @@ Vector3 Generate3DPosition() {
 }
 
 Star StarCreate() {
-  return (Star){Generate3DPosition(), {1, 1}, {0, 0}, 0.25f, BLACK};
+  double velocity =
+      rand() % (STAR_MAX_VELOCITY + 1 - STAR_MIN_VELOCITY) + STAR_MIN_VELOCITY;
+
+  velocity /= 100.0;
+
+  return (Star){Generate3DPosition(), {1, 1}, {0, 0}, velocity, BLACK};
 }
 
 void StarUpdate(Star *star) {

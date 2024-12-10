@@ -3,16 +3,16 @@
 #include "star.h"
 
 int main(int argc, char *argv[]) {
-  Star *stars[STAR_AMOUNT] = {};
-
-  for (int i = 0; i < STAR_AMOUNT; i++) {
-    Star star = {{0, 0, 0}, {20, 20}, 1.0, BLACK};
-    stars[i] = &star;
-  }
-
   InitWindow(800, 600, "hyperspace (demo)");
 
   SetTargetFPS(60);
+
+  Star *stars[STAR_AMOUNT] = {};
+
+  for (int i = 0; i < STAR_AMOUNT; i++) {
+    Star s = StarCreate();
+    stars[i] = &s;
+  }
 
   while (!WindowShouldClose()) {
     BeginDrawing();
@@ -22,9 +22,16 @@ int main(int argc, char *argv[]) {
 
     for (int i = 0; i < sizeof(stars) / sizeof(stars[0]); i++) {
       Star *star = stars[i];
+      star->position.z -= star->velocity;
 
-      DrawRectangle(star->position.x, star->position.y, star->size.x,
-                    star->size.y, star->color);
+      if (star->position.z < 1.0) {
+        star->position = Generate3DPosition();
+      }
+
+      StarUpdate(star);
+
+      DrawRectangle(star->renderPosition.x, star->renderPosition.y,
+                    star->size.x, star->size.y, star->color);
     }
 
     EndDrawing();

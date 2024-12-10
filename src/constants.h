@@ -1,1 +1,3 @@
 #define STAR_AMOUNT 1000
+#define STAR_START_POS_Z 20.0
+#define SPACE_SIZE 35.0

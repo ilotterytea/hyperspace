@@ -11,11 +11,10 @@ int main(int argc, char *argv[]) {
 
   SetTargetFPS(60);
 
-  Star *stars[STAR_AMOUNT] = {};
+  Star stars[STAR_AMOUNT] = {};
 
   for (int i = 0; i < STAR_AMOUNT; i++) {
-    Star s = StarCreate();
-    stars[i] = &s;
+    stars[i] = StarCreate();
   }
 
   while (!WindowShouldClose()) {
@@ -25,7 +24,7 @@ int main(int argc, char *argv[]) {
              GetScreenHeight() / 2.0 - 16, 32, BLACK);
 
     for (int i = 0; i < sizeof(stars) / sizeof(stars[0]); i++) {
-      Star *star = stars[i];
+      Star *star = &stars[i];
       star->position.z -= star->velocity;
 
       if (star->position.z < 1.0) {

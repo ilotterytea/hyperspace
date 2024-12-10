@@ -2,13 +2,11 @@
 
 #include <math.h>
 #include <stdlib.h>
-#include <time.h>
 
 #include "constants.h"
 #include "raylib.h"
 
 Vector3 Generate3DPosition() {
-  srand(time(0));
   double random = (double)rand() / RAND_MAX;
 
   double angle = random * 2.0 * M_PI;

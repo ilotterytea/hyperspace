@@ -1,8 +1,12 @@
 #include "constants.h"
 #include "raylib.h"
 #include "star.h"
+#include "stdlib.h"
+#include "time.h"
 
 int main(int argc, char *argv[]) {
+  srand(time(0));
+
   InitWindow(800, 600, "hyperspace (demo)");
 
   SetTargetFPS(60);

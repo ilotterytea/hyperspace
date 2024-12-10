@@ -1,0 +1,1 @@
+#define STAR_AMOUNT 1000

@@ -23,3 +23,18 @@ file(GLOB_RECURSE SRC_FILES "src/*.c" "src/*.h")
 
 target_sources(Hyperspace PRIVATE ${SRC_FILES})
 
+# raylib
+find_package(raylib QUIET)
+if (NOT raylib_FOUND)
+    include(FetchContent)
+    FetchContent_Declare(
+        raylib
+        GIT_REPOSITORY https://github.com/raysan5/raylib.git
+        GIT_TAG 5.0
+        GIT_SHALLOW 1
+    )
+    FetchContent_MakeAvailable(raylib)
+endif()
+
+target_link_libraries(Hyperspace PRIVATE raylib)
+

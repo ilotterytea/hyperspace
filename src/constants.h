@@ -1,3 +1,6 @@
 #define STAR_AMOUNT 1000
 #define STAR_START_POS_Z 20.0
+#define STAR_MIN_VELOCITY 1
+#define STAR_MAX_VELOCITY 25
+
 #define SPACE_SIZE 35.0

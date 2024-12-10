@@ -1,4 +1,4 @@
-use std::f32::consts::PI;
+use std::{f32::consts::PI, ops::Range};
 
 use ::rand::{thread_rng, Rng};
 use macroquad::prelude::*;
@@ -6,6 +6,7 @@ use macroquad::prelude::*;
 pub const STAR_AMOUNT: i32 = 1000;
 pub const STAR_START_POS_Z: f32 = 20.0;
 pub const SPACE_SIZE: f32 = 32.0;
+pub const STAR_VELOCITY_RANGE: Range<i32> = 1..25;
 
 pub struct Star {
     pub position: Vec3,
@@ -17,11 +18,12 @@ pub struct Star {
 
 impl Star {
     pub fn new() -> Self {
+        let mut rand = thread_rng();
         Self {
             position: generate_3d_position(),
             render_position: Vec2::new(0.0, 0.0),
             size: Vec2::new(1.0, 1.0),
-            velocity: 0.25,
+            velocity: rand.gen_range(STAR_VELOCITY_RANGE) as f32 / 100.0,
             color: BLACK,
         }
     }

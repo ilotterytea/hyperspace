@@ -31,6 +31,16 @@ async fn main() {
                 (screen_width() / 2.0, screen_height() / 2.0)
             };
 
+            if star.position.z <= 5.0 {
+                let x = star.render_position.x.powf(star.position.z / 10.0).abs();
+                if star.render_position.x < screen_center_x {
+                    star.position.x -= x;
+                }
+                if star.render_position.x > screen_center_x {
+                    star.position.x += x;
+                }
+            }
+
             star.update(screen_center_x, screen_center_y);
             star.color.a = 255.0
                 / if star.position.z - 5.0 < 1.0 {

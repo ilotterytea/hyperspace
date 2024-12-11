@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <stdlib.h>
 
 #include "constants.h"
@@ -47,6 +48,7 @@ int main(int argc, char* argv[]) {
       star->position.z -= star->velocity;
 
       if (star->position.z < 1.0) {
+        star->color.a = 0;
         star->position = Generate3DPosition();
       }
 
@@ -56,6 +58,9 @@ int main(int argc, char* argv[]) {
           mouse_control ? GetMouseY() : GetScreenHeight() / 2.0;
 
       StarUpdate(star, screen_center_x, screen_center_y);
+
+      star->color.a =
+          255 / (star->position.z - 5 < 1 ? 1 : star->position.z - 5);
 
       if (star->texture == NULL) {
         DrawRectangle(star->renderPosition.x, star->renderPosition.y,

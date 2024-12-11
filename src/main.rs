@@ -21,6 +21,7 @@ async fn main() {
             star.position.z -= star.velocity;
 
             if star.position.z < 1.0 {
+                star.color.a = 0.0;
                 star.position = generate_3d_position();
             }
 
@@ -31,6 +32,13 @@ async fn main() {
             };
 
             star.update(screen_center_x, screen_center_y);
+            star.color.a = 255.0
+                / if star.position.z - 5.0 < 1.0 {
+                    1.0
+                } else {
+                    star.position.z - 5.0
+                }
+                / 255.0;
 
             draw_rectangle(
                 star.render_position.x,

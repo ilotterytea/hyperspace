@@ -22,13 +22,13 @@ Vector3 Generate3DPosition() {
   return v;
 }
 
-Star StarCreate() {
+Star StarCreate(Texture *texture) {
   double velocity =
       rand() % (STAR_MAX_VELOCITY + 1 - STAR_MIN_VELOCITY) + STAR_MIN_VELOCITY;
 
   velocity /= 100.0;
 
-  return (Star){Generate3DPosition(), {1, 1}, {0, 0}, velocity, BLACK};
+  return (Star){Generate3DPosition(), {1, 1}, {0, 0}, velocity, WHITE, texture};
 }
 
 void StarUpdate(Star *star, float screen_center_x, float screen_center_y) {

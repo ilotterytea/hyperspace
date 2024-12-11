@@ -14,8 +14,17 @@ int main(int argc, char *argv[]) {
 
   Star stars[STAR_AMOUNT] = {};
 
+  Texture2D* texture = NULL;
+
+  if (FileExists("star.png")) {
+    Image image = LoadImage("star.png");
+    Texture2D loadedTexture = LoadTextureFromImage(image);
+    texture = &loadedTexture;
+    UnloadImage(image);
+  }
+
   for (int i = 0; i < STAR_AMOUNT; i++) {
-    stars[i] = StarCreate();
+    stars[i] = StarCreate(texture);
   }
 
   while (!WindowShouldClose()) {
@@ -39,8 +48,13 @@ int main(int argc, char *argv[]) {
 
       StarUpdate(star, screen_center_x, screen_center_y);
 
-      DrawRectangle(star->renderPosition.x, star->renderPosition.y,
-                    star->size.x, star->size.y, star->color);
+      if (star->texture == NULL) {
+        DrawRectangle(star->renderPosition.x, star->renderPosition.y,
+                      star->size.x, star->size.y, star->color);
+      } else {
+        DrawTextureEx(*star->texture, star->renderPosition, 0.0,
+                      star->size.x / 10.0, star->color);
+      }
     }
 
     EndDrawing();

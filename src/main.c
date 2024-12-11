@@ -26,6 +26,12 @@ int main(int argc, char* argv[]) {
 
   if (FileExists("star.png")) {
     Image image = LoadImage("star.png");
+
+    if (image.width != STAR_TEXTURE_WIDTH ||
+        image.height != STAR_TEXTURE_HEIGHT) {
+      ImageResizeNN(&image, STAR_TEXTURE_WIDTH, STAR_TEXTURE_HEIGHT);
+    }
+
     Texture2D loadedTexture = LoadTextureFromImage(image);
     texture = &loadedTexture;
     UnloadImage(image);

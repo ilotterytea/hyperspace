@@ -2,6 +2,7 @@
 #include <stdlib.h>
 
 #include "constants.h"
+#include "math.h"
 #include "raylib.h"
 #include "star.h"
 #include "stdlib.h"
@@ -56,6 +57,13 @@ int main(int argc, char* argv[]) {
           mouse_control ? GetMouseX() : GetScreenWidth() / 2.0;
       float screen_center_y =
           mouse_control ? GetMouseY() : GetScreenHeight() / 2.0;
+
+      if (star->position.z <= 5.0) {
+        int x = abs((int)pow(star->renderPosition.x, star->position.z / 10.0));
+
+        if (star->renderPosition.x < screen_center_x) star->position.x -= x;
+        if (star->renderPosition.x > screen_center_x) star->position.x += x;
+      }
 
       StarUpdate(star, screen_center_x, screen_center_y);
 

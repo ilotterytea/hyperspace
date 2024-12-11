@@ -8,6 +8,6 @@ typedef struct Star {
 } Star;
 
 Star StarCreate();
-void StarUpdate(Star *star);
+void StarUpdate(Star *star, float screen_center_x, float screen_center_y);
 
 Vector3 Generate3DPosition();

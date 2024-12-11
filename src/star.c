@@ -31,10 +31,7 @@ Star StarCreate() {
   return (Star){Generate3DPosition(), {1, 1}, {0, 0}, velocity, BLACK};
 }
 
-void StarUpdate(Star *star) {
-  float screen_center_x = GetScreenWidth() / 2.0;
-  float screen_center_y = GetScreenHeight() / 2.0;
-
+void StarUpdate(Star *star, float screen_center_x, float screen_center_y) {
   float x = star->position.x / star->position.z + screen_center_x;
   float y = star->position.y / star->position.z + screen_center_y;
 

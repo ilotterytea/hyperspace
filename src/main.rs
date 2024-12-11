@@ -13,7 +13,7 @@ async fn main() {
     }
 
     loop {
-        clear_background(WHITE);
+        clear_background(BLACK);
 
         stars.sort_by_key(|x| x.position.z as i32);
 

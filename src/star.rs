@@ -24,7 +24,7 @@ impl Star {
             render_position: Vec2::new(0.0, 0.0),
             size: Vec2::new(1.0, 1.0),
             velocity: rand.gen_range(STAR_VELOCITY_RANGE) as f32 / 100.0,
-            color: BLACK,
+            color: WHITE,
         }
     }
 

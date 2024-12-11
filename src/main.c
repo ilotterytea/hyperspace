@@ -35,7 +35,7 @@ int main(int argc, char* argv[]) {
 
   while (!WindowShouldClose()) {
     BeginDrawing();
-    ClearBackground(WHITE);
+    ClearBackground(BLACK);
     DrawText("hi world!", GetScreenWidth() / 2.0 - 16 * 4,
              GetScreenHeight() / 2.0 - 16, 32, BLACK);
 
@@ -43,7 +43,7 @@ int main(int argc, char* argv[]) {
           CompareStarsByZPosition);
 
     for (int i = 0; i < sizeof(stars) / sizeof(stars[0]); i++) {
-      Star *star = &stars[i];
+      Star* star = &stars[i];
       star->position.z -= star->velocity;
 
       if (star->position.z < 1.0) {

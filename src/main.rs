@@ -15,6 +15,8 @@ async fn main() {
     loop {
         clear_background(WHITE);
 
+        stars.sort_by_key(|x| x.position.z as i32);
+
         for star in &mut stars {
             star.position.z -= star.velocity;
 

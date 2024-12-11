@@ -38,8 +38,6 @@ int main(int argc, char* argv[]) {
   while (!WindowShouldClose()) {
     BeginDrawing();
     ClearBackground(BLACK);
-    DrawText("hi world!", GetScreenWidth() / 2.0 - 16 * 4,
-             GetScreenHeight() / 2.0 - 16, 32, BLACK);
 
     qsort(stars, sizeof(stars) / sizeof(stars[0]), sizeof(struct Star),
           CompareStarsByZPosition);

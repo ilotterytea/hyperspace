@@ -28,10 +28,7 @@ impl Star {
         }
     }
 
-    pub fn update(&mut self) {
-        let screen_center_x = screen_width() / 2.0;
-        let screen_center_y = screen_height() / 2.0;
-
+    pub fn update(&mut self, screen_center_x: f32, screen_center_y: f32) {
         let x = self.position.x / self.position.z + screen_center_x;
         let y = self.position.y / self.position.z + screen_center_y;
 

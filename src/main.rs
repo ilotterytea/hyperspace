@@ -5,6 +5,8 @@ mod star;
 
 #[macroquad::main("hyperspace")]
 async fn main() {
+    let mut mouse_control = false;
+
     let mut stars: Vec<Star> = Vec::new();
     for _ in 0..STAR_AMOUNT {
         stars.push(Star::new());
@@ -20,7 +22,13 @@ async fn main() {
                 star.position = generate_3d_position();
             }
 
-            star.update();
+            let (screen_center_x, screen_center_y) = if mouse_control {
+                mouse_position()
+            } else {
+                (screen_width() / 2.0, screen_height() / 2.0)
+            };
+
+            star.update(screen_center_x, screen_center_y);
 
             draw_rectangle(
                 star.render_position.x,
@@ -29,6 +37,11 @@ async fn main() {
                 star.size.y,
                 star.color,
             );
+        }
+
+        if is_mouse_button_pressed(MouseButton::Left) {
+            mouse_control = !mouse_control;
+            show_mouse(!mouse_control);
         }
 
         next_frame().await

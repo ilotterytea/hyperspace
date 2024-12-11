@@ -1,10 +1,16 @@
+#include <stdlib.h>
+
 #include "constants.h"
 #include "raylib.h"
 #include "star.h"
 #include "stdlib.h"
 #include "time.h"
 
-int main(int argc, char *argv[]) {
+int CompareStarsByZPosition(const void* a, const void* b) {
+  return ((struct Star*)b)->position.z - ((struct Star*)a)->position.z;
+}
+
+int main(int argc, char* argv[]) {
   bool mouse_control = false;
   srand(time(0));
 
@@ -32,6 +38,9 @@ int main(int argc, char *argv[]) {
     ClearBackground(WHITE);
     DrawText("hi world!", GetScreenWidth() / 2.0 - 16 * 4,
              GetScreenHeight() / 2.0 - 16, 32, BLACK);
+
+    qsort(stars, sizeof(stars) / sizeof(stars[0]), sizeof(struct Star),
+          CompareStarsByZPosition);
 
     for (int i = 0; i < sizeof(stars) / sizeof(stars[0]); i++) {
       Star *star = &stars[i];

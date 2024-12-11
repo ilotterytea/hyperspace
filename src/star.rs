@@ -4,9 +4,9 @@ use ::rand::{thread_rng, Rng};
 use macroquad::prelude::*;
 
 pub const STAR_AMOUNT: i32 = 1000;
-pub const STAR_START_POS_Z: f32 = 20.0;
-pub const SPACE_SIZE: f32 = 32.0;
-pub const STAR_VELOCITY_RANGE: Range<i32> = 1..25;
+const STAR_POS_Z: Range<i32> = 10..20;
+const SPACE_SIZE: f32 = 32.0;
+const STAR_VELOCITY_RANGE: Range<i32> = 1..5;
 
 pub struct Star {
     pub position: Vec3,
@@ -35,7 +35,7 @@ impl Star {
         self.render_position.x = x;
         self.render_position.y = y;
 
-        let size = (STAR_START_POS_Z - self.position.z) / (0.2 * self.position.z);
+        let size = (STAR_POS_Z.end as f32 - self.position.z) / (0.2 * self.position.z);
 
         self.size.x = size;
         self.size.y = size;
@@ -51,5 +51,5 @@ pub fn generate_3d_position() -> Vec3 {
     let x = radius * angle.sin();
     let y = radius * angle.cos();
 
-    Vec3::new(x, y, STAR_START_POS_Z)
+    Vec3::new(x, y, rand.gen_range(STAR_POS_Z) as f32)
 }

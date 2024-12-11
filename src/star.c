@@ -18,7 +18,9 @@ Vector3 Generate3DPosition() {
   float x = radius * sin(angle);
   float y = radius * cos(angle);
 
-  Vector3 v = {x, y, STAR_START_POS_Z};
+  Vector3 v = {x, y,
+               rand() % (STAR_START_POS_Z_MAX + 1 - STAR_START_POS_Z_MIN) +
+                   STAR_START_POS_Z_MIN};
   return v;
 }
 
@@ -38,7 +40,8 @@ void StarUpdate(Star *star, float screen_center_x, float screen_center_y) {
   star->renderPosition.x = x;
   star->renderPosition.y = y;
 
-  float size = (STAR_START_POS_Z - star->position.z) / (0.2 * star->position.z);
+  float size =
+      (STAR_START_POS_Z_MAX - star->position.z) / (0.2 * star->position.z);
 
   star->size.x = size;
   star->size.y = size;

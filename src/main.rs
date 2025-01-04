@@ -34,6 +34,7 @@ async fn main() {
         clear_background(BLACK);
 
         stars.sort_by_key(|x| x.position.z as i32);
+        stars.sort_by(|a, b| b.position.z.partial_cmp(&a.position.z).unwrap());
 
         for star in &mut stars {
             star.position.z -= star.velocity;

@@ -1,15 +1,33 @@
 use crate::star::*;
+use clap::Parser;
 use macroquad::prelude::*;
 
 mod star;
 
-#[macroquad::main("hyperspace")]
+#[derive(Parser, Debug)]
+struct Args {
+    #[arg(short, long)]
+    pub texture_path: Option<String>,
+}
+
+#[macroquad::main("hyperspace (demo)")]
 async fn main() {
+    let args = Args::parse();
     let mut mouse_control = false;
+
+    // loading a texture
+    let mut texture: Option<Texture2D> = None;
+
+    if args.texture_path.is_some() {
+        match load_texture(args.texture_path.unwrap().as_str()).await {
+            Ok(x) => texture = Some(x),
+            Err(_) => warn!("Failed to load a star texture"),
+        }
+    }
 
     let mut stars: Vec<Star> = Vec::new();
     for _ in 0..STAR_AMOUNT {
-        stars.push(Star::new());
+        stars.push(Star::new(&texture));
     }
 
     loop {
@@ -50,13 +68,26 @@ async fn main() {
                 }
                 / 255.0;
 
-            draw_rectangle(
-                star.render_position.x,
-                star.render_position.y,
-                star.size.x,
-                star.size.y,
-                star.color,
-            );
+            if star.texture.is_some() {
+                draw_texture_ex(
+                    star.texture.as_ref().unwrap(),
+                    star.render_position.x,
+                    star.render_position.y,
+                    star.color,
+                    DrawTextureParams {
+                        dest_size: Some(star.size),
+                        ..DrawTextureParams::default()
+                    },
+                );
+            } else {
+                draw_rectangle(
+                    star.render_position.x,
+                    star.render_position.y,
+                    star.size.x,
+                    star.size.y,
+                    star.color,
+                );
+            }
         }
 
         if is_mouse_button_pressed(MouseButton::Left) {

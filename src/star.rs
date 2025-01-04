@@ -8,16 +8,17 @@ const STAR_POS_Z: Range<i32> = 10..20;
 const SPACE_SIZE: f32 = 32.0;
 const STAR_VELOCITY_RANGE: Range<i32> = 1..5;
 
-pub struct Star {
+pub struct Star<'a> {
     pub position: Vec3,
     pub render_position: Vec2,
     pub size: Vec2,
     pub velocity: f32,
     pub color: Color,
+    pub texture: &'a Option<Texture2D>,
 }
 
-impl Star {
-    pub fn new() -> Self {
+impl<'a> Star<'a> {
+    pub fn new(texture: &'a Option<Texture2D>) -> Self {
         let mut rand = thread_rng();
         Self {
             position: generate_3d_position(),
@@ -25,6 +26,7 @@ impl Star {
             size: Vec2::new(1.0, 1.0),
             velocity: rand.gen_range(STAR_VELOCITY_RANGE) as f32 / 100.0,
             color: WHITE,
+            texture,
         }
     }
 

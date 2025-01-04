@@ -12,6 +12,10 @@ cargo build
 cargo run
 ```
 
+## Customization
+
++ You can replace the star image by using the argument `-t TEXTURE_PATH`.
+
 ## License
 
 See [LICENSE](LICENSE). This project is under the WTFPL license.

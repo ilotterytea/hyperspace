@@ -21,7 +21,27 @@ async fn main() {
     if args.texture_path.is_some() {
         match load_texture(args.texture_path.unwrap().as_str()).await {
             Ok(x) => texture = Some(x),
-            Err(_) => warn!("Failed to load a star texture"),
+            Err(_) => {
+                warn!("Failed to load a star texture");
+                let mut missing_image = Image::gen_image_color(64, 64, MAGENTA);
+
+                let part_size = missing_image.width() as u16 / 2;
+                let part_color = BLACK;
+
+                for i in 0..2 {
+                    for x in 0..part_size {
+                        for y in 0..part_size {
+                            missing_image.set_pixel(
+                                (part_size * i + x) as u32,
+                                (part_size * i + y) as u32,
+                                part_color,
+                            );
+                        }
+                    }
+                }
+
+                texture = Some(Texture2D::from_image(&missing_image));
+            }
         }
     }
 
